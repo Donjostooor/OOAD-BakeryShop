@@ -10,11 +10,12 @@ public class MainApp {
         Customer customer = new Customer();
         // SellProduct /Order /Receipt
         Sellproduct sp = new Sellproduct();
+        Order order = new Order();
+        Receipt receipt = new Receipt();
         // Product
         Product products = new Product();
         /*--------------------------------------------------------------------------------------------------------------*/
         // Test Zone
-        sp.getSellproductTotal("ken");
         /*--------------------------------------------------------------------------------------------------------------*/
         // UI Program
         int start;
@@ -101,7 +102,7 @@ public class MainApp {
                             do {
                                 System.out.println("******************** Make a sale ********************");
                                 products.getProductList(); // List Product
-                                for (int i = 1; i < 100; i++) {
+                                for (int i = 1; i < sp.Aid.length; i++) {
                                     System.out.print("Select Product : ");
                                     select_product = sc.nextInt(); // input id product
                                     if (select_product == 0) {
@@ -176,7 +177,7 @@ public class MainApp {
                                 view = sc.nextInt();
                                 // (1) Make Receipt
                                 if (view == 1) {
-                                    int receipt;
+                                    int receipts;
                                     do {
                                         System.out.println(" ==================== Receipt ==================== ");
                                         System.out.println(" ");
@@ -213,14 +214,17 @@ public class MainApp {
                                         System.out.println("              SoftWare By NUStudent63              ");
                                         System.out.println("             -------------------------             ");
                                         // Exit
-                                        System.out.println("You want Exit Please Select (0) Exit");
+                                        System.out.println("You want Exit From Receipt Please Select (0) Exit");
                                         System.out.print("Your select : ");
-                                        receipt = sc.nextInt();
-                                    } while (receipt != 0);
+                                        receipts = sc.nextInt();
+                                    } while (receipts != 0);
+                                    System.out.println("You want Exit From Order list Please Select (0) Exit");
+                                    System.out.print("Your select : ");
                                 }
                                 // (0) Exit
                             } while (view != 0);
-
+                            System.out.println("You want Logout Please Select (0) LogOut");
+                            System.out.print("Your select : ");
                         }
                         // (0) Logout
                     } while (select_owner != 0);

@@ -56,7 +56,7 @@ public class Product {
         String ProList = "";
         for (int i = 0; i < ProductId.length; i++) {
             ProList = "Product Id : " + ProductId[i] + "\nName : " + ProductName[i] + "\nPrice : " + ProductPrice[i]
-                    + " Baht" + "\nDetail : " + ProductDeTail[i];
+                    + " Bath" + "\nDetail : " + ProductDeTail[i];
             System.out.println(ProList);
             System.out.println("---------------------------");
         }
