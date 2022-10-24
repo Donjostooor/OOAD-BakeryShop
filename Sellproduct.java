@@ -1,16 +1,18 @@
+import java.util.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Sellproduct {
-    int[] Aid = new int[5];
-    int[] SellproductId = new int[100]; // productID
-    String[] SellproductName = new String[100]; // productName
-    int[] SellproductPrice = new int[100]; // productPrice
-    int[] SellproductNum = new int[100]; // Num of product
-    int[] SellproductTotal = new int[100];// TotalPrice
-    String[] SellproductCustomername = new String[100]; // CustomerName
-    String[] SellproductCustomertel = new String[100]; // CustomerTel
-    DateTimeFormatter[] SellproductOrderdate = new DateTimeFormatter[100]; // orderDateandTime giveProduct
+    int[] Aid = new int[10];
+    int[] SellproductId = new int[10]; // productID
+    String[] SellproductName = new String[10]; // productName
+    int[] SellproductPrice = new int[10]; // productPrice
+    int[] SellproductNum = new int[10]; // Num of product
+    int[] SellproductTotal = new int[10];// TotalPrice
+    int[] SellproductCustomerid = new int[10]; // CustomerName
+    String[] SellproductCustomername = new String[10]; // CustomerName
+    String[] SellproductCustomertel = new String[10]; // CustomerTel
+    String[] SellproductOrderdate = new String[10]; // orderDateandTime giveProduct
 
     public void extendsSellproduct(
             int[] Aid,
@@ -22,7 +24,7 @@ public class Sellproduct {
             int[] SellproductCustomerid,
             String[] SellproductCustomername,
             String[] SellproductCustomertel,
-            DateTimeFormatter[] SellproductOrderdate) {
+            String[] SellproductOrderdate) {
 
         this.Aid = Aid;
         this.SellproductId = SellproductId;
@@ -107,12 +109,31 @@ public class Sellproduct {
         return SPCTel;
     }
 
-    public void getSellproductOrderdate() {
+    public String getSellproductOrderdate() {
         LocalDateTime myDateObj = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
         String formattedDate = myDateObj.format(myFormatObj);
-        System.out.println(formattedDate);
+        return formattedDate;
+    }
+
+    public String getDetailSellprodect() {
+        String Ds = "";
+        System.out.println("List" + " | " + "ProductId" + " | " + "ProductName" + " | " + "ProductPrice" + " | "
+                + "Number" + " | " + "CustomerName" + " | " + "CustomerTel" + " | " + "Pick up date");
+        for (int i = 1; i < SellproductId.length; i++) {
+            if (SellproductId[i] != 0) {
+                System.out.println(i + ".   |     "
+                        + SellproductId[i] + "     |     "
+                        + SellproductName[i] + "    |      "
+                        + SellproductPrice[i] + "     |    "
+                        + SellproductNum[i] + "   |   "
+                        + SellproductCustomername[i] + "   |   "
+                        + SellproductCustomertel[i] + "   |   "
+                        + SellproductOrderdate[i] + "   |   ");
+            }
+        }
+        return Ds;
     }
 
     public int getGenId(String Vname) {
@@ -123,6 +144,16 @@ public class Sellproduct {
             }
         }
         return SId;
+    }
+
+    public String getGenTel(String Vname) {
+        String STel = "";
+        for (int i = 0; i < Aid.length; i++) {
+            if (Vname.equals(SellproductCustomername[i]) == true) {
+                STel = SellproductCustomertel[i];
+            }
+        }
+        return STel;
     }
 
     public int getSellproductTotal(String Vname) {
@@ -136,10 +167,74 @@ public class Sellproduct {
 
     }
 
-    public Boolean getFilterName(String Vname) {
+    public Set<Integer> getFilter(String name) {
+        Set<Integer> result1 = new HashSet<Integer>(); // List
+        Set<String> result2 = new HashSet<String>(); // input name
+        String[] array = SellproductCustomername;
+        String[] input = new String[10];
+        for (int i = 1; i < array.length; i++) {
+            for (int j = 1; j < array.length; j++) {
+                if (array[i] == input[j]) {
+                    result1.add(i);
+                    result2.add(array[i]);
+                }
+                input[0] = name;
+                input[1] = name;
+                input[2] = name;
+                input[3] = name;
+                input[4] = name;
+                input[5] = name;
+                input[6] = name;
+                input[7] = name;
+                input[8] = name;
+                input[9] = name;
+            }
+        }
+        return result1;
+    }
+
+    public Set<Integer> getFilterOrder(String name) {
+        Set<Integer> result1 = new HashSet<Integer>(); // List
+        Set<String> result2 = new HashSet<String>(); // input name
+        String[] array = SellproductCustomername;
+        String[] input = new String[10];
+        for (int i = 1; i < array.length; i++) {
+            for (int j = 1; j < array.length; j++) {
+                if (array[i] == input[j]) {
+                    result1.add(i);
+                    result2.add(array[i]);
+                }
+                input[0] = name;
+                input[1] = name;
+                input[2] = name;
+                input[3] = name;
+                input[4] = name;
+                input[5] = name;
+                input[6] = name;
+                input[7] = name;
+                input[8] = name;
+                input[9] = name;
+            }
+        }
+        System.out.print(result1 + " " + result2);
+        System.out.print("\n");
+        return result1;
+    }
+
+    public Boolean getFilterName(String name) {
         Boolean Check = false;
         for (int i = 1; i < Aid.length; i++) {
-            if (Vname.equals(SellproductCustomername[i]) == true) {
+            if (name.equals(SellproductCustomername[i]) == true) {
+                Check = true;
+            }
+        }
+        return Check;
+    }
+
+    public Boolean getFilterPick(String name) {
+        Boolean Check = false;
+        for (int i = 1; i < Aid.length; i++) {
+            if (name.equals(SellproductOrderdate[i]) == true) {
                 Check = true;
             }
         }

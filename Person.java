@@ -56,16 +56,6 @@ public class Person {
         return PTel;
     }
 
-    public String getTel(int Ownerpass) {
-        String PTel = "";
-        for (int i = 0; i < PersonId.length; i++) {
-            if (Ownerpass == PersonPassword[i]) {
-                PTel = PersonTel[i];
-            }
-        }
-        return PTel;
-    }
-
     public String getPersonType(int id) {
         String PType = "";
         for (int i = 0; i < PersonId.length; i++) {
@@ -74,6 +64,26 @@ public class Person {
             }
         }
         return PType;
+    }
+
+    public int getid(String name) {
+        int Pid = 0;
+        for (int i = 0; i < PersonId.length; i++) {
+            if (name.equals(PersonName[i]) == true) {
+                Pid = PersonId[i];
+            }
+        }
+        return Pid;
+    }
+
+    public String getTel(int pass) {
+        String PTel = "";
+        for (int i = 0; i < PersonId.length; i++) {
+            if (pass == PersonPassword[i]) {
+                PTel = PersonTel[i];
+            }
+        }
+        return PTel;
     }
 
     public String getDetailUser() {
