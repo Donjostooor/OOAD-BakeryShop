@@ -62,6 +62,8 @@ public class MainApp {
                         if (selectadmin == 2) {
                             System.out.println("########## Product ##########");
                             products.getProductList();
+                        } else {
+                            System.out.println("does not match options");
                         }
                         // (0) Logout
                     } while (selectadmin != 0);
@@ -322,6 +324,8 @@ public class MainApp {
                                 System.out.print("Your select : ");
                                 Ao = sc.nextInt();
                             } while (Ao != 0);
+                        } else {
+                            System.out.println("does not match options");
                         }
                         // (0) Logout
                     } while (select_owner != 0);
@@ -507,6 +511,8 @@ public class MainApp {
                                 cview = sc.nextInt();
                             } while (cview != 0);
                             System.out.println(" =========== Exit From Receipt ========== ");
+                        } else {
+                            System.out.println("does not match options");
                         }
                         // (0) LogOut
                     } while (select_customer != 0);
