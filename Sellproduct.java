@@ -10,7 +10,7 @@ public class Sellproduct {
     int[] SellproductNum = new int[10]; // Num of product
     int[] SellproductTotal = new int[10];// TotalPrice
     int[] SellproductCustomerid = new int[10]; // CustomerName
-    String[] SellproductCustomername = new String[10]; // CustomerName
+    static String[] SellproductCustomername = new String[10]; // CustomerName
     String[] SellproductCustomertel = new String[10]; // CustomerTel
     String[] SellproductOrderdate = new String[10]; // orderDateandTime giveProduct
 
@@ -33,7 +33,7 @@ public class Sellproduct {
         this.SellproductNum = SellproductNum;
         this.SellproductTotal = SellproductTotal;
 
-        this.SellproductCustomername = SellproductCustomername;
+        Sellproduct.SellproductCustomername = SellproductCustomername;
         this.SellproductCustomertel = SellproductCustomertel;
 
         this.SellproductOrderdate = SellproductOrderdate;
@@ -167,14 +167,14 @@ public class Sellproduct {
 
     }
 
-    public Set<Integer> getFilter(String name) {
+    public static Set<Integer> getFilter(String name) {
         Set<Integer> result1 = new HashSet<Integer>(); // List
         Set<String> result2 = new HashSet<String>(); // input name
         String[] array = SellproductCustomername;
-        String[] input = new String[10];
+        String[] input = new String[array.length];
         for (int i = 1; i < array.length; i++) {
             for (int j = 1; j < array.length; j++) {
-                if (array[i] == input[j]) {
+                if (input[i] == array[i]) {
                     result1.add(i);
                     result2.add(array[i]);
                 }
@@ -193,32 +193,17 @@ public class Sellproduct {
         return result1;
     }
 
-    public Set<Integer> getFilterOrder(String name) {
-        Set<Integer> result1 = new HashSet<Integer>(); // List
-        Set<String> result2 = new HashSet<String>(); // input name
-        String[] array = SellproductCustomername;
-        String[] input = new String[10];
-        for (int i = 1; i < array.length; i++) {
-            for (int j = 1; j < array.length; j++) {
-                if (array[i] == input[j]) {
-                    result1.add(i);
-                    result2.add(array[i]);
-                }
-                input[0] = name;
-                input[1] = name;
-                input[2] = name;
-                input[3] = name;
-                input[4] = name;
-                input[5] = name;
-                input[6] = name;
-                input[7] = name;
-                input[8] = name;
-                input[9] = name;
+    public static List<Integer> getFilterOrder(String search) {
+
+        int p;
+        List<Integer> indexs = new ArrayList<Integer>();
+        for (p = 1; p < SellproductCustomername.length; p++) {
+            if (search.equals(SellproductCustomername[p])) {
+                indexs.add(p);
             }
         }
-        System.out.print(result1 + " " + result2);
-        System.out.print("\n");
-        return result1;
+        return indexs;
+
     }
 
     public Boolean getFilterName(String name) {

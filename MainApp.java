@@ -1,5 +1,7 @@
 import java.util.*;
 
+import javax.xml.crypto.dsig.keyinfo.KeyName;
+
 public class MainApp {
 
     public static void main(String[] args) {
@@ -16,6 +18,9 @@ public class MainApp {
         Product products = new Product();
         /*--------------------------------------------------------------------------------------------------------------*/
         // Test Zone
+        // String aaname = sc.next().intern();
+        // sp.getFilterOrder(aaname);
+        // System.out.println(sp.getFilterOrder(aaname));
         /*--------------------------------------------------------------------------------------------------------------*/
         // UI Program
         int start;
@@ -181,50 +186,52 @@ public class MainApp {
                         // (3) View Order
                         if (select_owner == 3) {
                             int view;
+                            String aname, test;
                             System.out.println("******************** View Once Order ********************");
+                            System.out.print("Enter Name (Customer,Owner) : ");
+                            aname = sc.next();// input
                             do {
                                 // Filter
-                                System.out.print("Enter Name (Customer,Owner) : ");
-                                String name = sc.next(); // input
 
-                                // test zone
-                                for (int i = 0; i < sp.Aid.length; i++) {
-                                    System.out.print(sp.SellproductCustomername[i] + " ");
-                                }
-                                System.out.println("\n" + sp.getFilter(Ownername));
-                                System.out.println(sp.getFilter(name));
-                                System.out.println(name);
-
+                                // test zone---------------------------------------//
+                                /*
+                                 * for (int i = 0; i < sp.Aid.length; i++) {
+                                 * System.out.print(sp.SellproductCustomername[i] + " ");
+                                 * }
+                                 * // System.out.println("\n" + sp.getDetailSellprodect());
+                                 * System.out.println(Sellproduct.getFilter(Ownername));
+                                 * System.out.println(Sellproduct.getFilterOrder(aname));
+                                 * System.out.println(aname + " //" + Ownername);
+                                 */
+                                // ----- ---------------------------------------------//
                                 // Order List By Name
                                 System.out.println(" ==================== Order List ==================== ");
                                 System.out.println(" ");
-                                System.out.println(" Order Id : " + sp.getGenId(name));
+                                System.out.println(" Order Id : " + sp.getGenId(aname));
                                 System.out.println(
-                                        "CustomerName : " + name + "   " + "CustomerTel : " + sp.getGenTel(name));
+                                        "CustomerName : " + aname + "   " + "CustomerTel : " + sp.getGenTel(aname));
                                 System.out.println("List" + " | " + "ProductId" + " | " + "ProductName" + " | "
                                         + "ProductPrice" + " | " + "Number" + " | ");
-                                if (sp.getFilterName(name) == true) {
-                                    Set<Integer> G = sp.getFilterOrder(name);
-                                    int[] grr = new int[G.size()];
-                                    // Converting Set object to integer array
-                                    int g = 0;
-                                    for (int x : G) {
-                                        grr[g++] = x;
-                                    }
-                                    System.out.println(G.isEmpty());
-                                    for (int i = 0; i <= G.size(); i++) {
-                                        System.out.println(
-                                                (i + 1) + ".   |     "
-                                                        + sp.SellproductId[grr[i]] + "     |     "
-                                                        + sp.SellproductName[grr[i]] + "    |      "
-                                                        + sp.SellproductPrice[grr[i]] + "     |    "
-                                                        + sp.SellproductNum[grr[i]]);
-                                    }
-                                } else {
-                                    break;
+                                List<Integer> G = Sellproduct.getFilterOrder(aname);
+                                int[] grr = new int[G.size()];
+                                // Converting Set object to integer array
+                                int g = 0;
+                                for (int x : G) {
+                                    grr[g++] = x;
                                 }
+                                // System.out.println(G);
+                                // System.out.println(G.size());
+                                for (int i = 0; i < G.size(); i++) {
+                                    System.out.println(
+                                            i + 1 + ".   |     "
+                                                    + sp.SellproductId[grr[i]] + "     |     "
+                                                    + sp.SellproductName[grr[i]] + "    |      "
+                                                    + sp.SellproductPrice[grr[i]] + "     |    "
+                                                    + sp.SellproductNum[grr[i]]);
+                                }
+
                                 System.out.println(" ");
-                                System.out.print(" Total of Piece : " + sp.getSellproductTotal(name) + "   |   ");
+                                System.out.print(" Total of Piece : " + sp.getSellproductTotal(aname) + "   |   ");
                                 System.out.println(sp.getSellproductOrderdate());
                                 System.out.println(" ====================================================");
                                 System.out.println("You want ??");
@@ -249,55 +256,39 @@ public class MainApp {
                                         System.out.println(sp.getSellproductOrderdate());
                                         System.out.println(" ");
                                         // Customer
-                                        System.out.println(" CustomerName : " + name + "   " + "CustomerTel : "
-                                                + sp.getGenTel(name));
+                                        System.out.println(" CustomerName : " + aname + "   " + "CustomerTel : "
+                                                + sp.getGenTel(aname));
                                         // Order
                                         System.out.println(" ");
-                                        System.out.println(" Order Id : " + sp.getGenId(name));
+                                        System.out.println(" Order Id : " + sp.getGenId(aname));
 
                                         System.out.println(" ------------------------------------------------- ");
                                         System.out.println(" List  ProductName                        Price    ");
                                         System.out.println(" ------------------------------------------------- ");
-                                        for (int i = 1; i < sp.Aid.length; i++) {
-                                            if (sp.SellproductId[i] != 0 && sp.getFilterName(name) == true) {
-                                                int k = 0;
-                                                Set<Integer> F = sp.getFilter(Ownername);
-                                                int[] arr = new int[10];
-                                                int j = 0;
-                                                for (int t = 0; t < F.size(); t++)
-                                                    arr[i] = F.size();
-                                                for (int u = 0; u < arr.length; u++) {
-                                                    k = arr[u];
-                                                }
-                                                System.out.println(
-                                                        " " + i + "  " + sp.SellproductName[k]
-                                                                + "                        "
-                                                                + sp.SellproductPrice[k]);
-                                                System.out.println(
-                                                        "          Num : " + sp.SellproductNum[k]);
-                                            } else {
-                                                break;
-                                            }
+
+                                        List<Integer> Q = Sellproduct.getFilterOrder(aname);
+                                        int[] qrr = new int[Q.size()];
+                                        // Converting Set object to integer array
+                                        int q = 0;
+                                        for (int x : Q) {
+                                            qrr[q++] = x;
                                         }
-                                        for (int i = 1; i < sp.Aid.length; i++) {
-                                            if (sp.SellproductId[i] != 0 && sp.getFilterName(name) == true) {
-                                                int k = 0;
-                                                Set<Integer> F = sp.getFilter(Ownername);
-                                                int[] arr = new int[10];
-                                                int j = 0;
-                                                for (int t = 0; t < F.size(); t++)
-                                                    arr[i] = F.size();
-                                                for (int u = 0; u < arr.length; u++) {
-                                                    k = arr[u];
-                                                }
-                                                System.out.println(" Pick up date : "
-                                                        + sp.SellproductOrderdate[k]);
-                                            } else {
-                                                break;
-                                            }
+                                        for (int i = 0; i < Q.size(); i++) {
+                                            System.out.println(
+                                                    " " + i + 1 + "  " + sp.SellproductName[qrr[i]]
+                                                            + "                        "
+                                                            + sp.SellproductPrice[qrr[i]]);
+                                            System.out.println(
+                                                    "          Num : " + sp.SellproductNum[qrr[i]]);
+
+                                        }
+                                        for (int i = 0; i < Q.size(); i++) {
+                                            System.out.println(" Pick up date : "
+                                                    + sp.SellproductOrderdate[qrr[i]]);
+
                                         }
                                         System.out.println(" ------------------------------------------------- ");
-                                        System.out.println("Total of Piece : " + sp.getSellproductTotal(name));
+                                        System.out.println("Total of Piece : " + sp.getSellproductTotal(aname));
                                         System.out.println(" ------------------------------------------------- ");
                                         System.out.println(" ************************************************* ");
                                         System.out.println("                Thank You Come Agin                ");
