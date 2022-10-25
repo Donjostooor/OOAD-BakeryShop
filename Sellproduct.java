@@ -193,11 +193,11 @@ public class Sellproduct {
         return result1;
     }
 
-    public static List<Integer> getFilterOrder(String search) {
+    public static List<Integer> getFilterPerson(String search) {
 
         int p;
         List<Integer> indexs = new ArrayList<Integer>();
-        for (p = 1; p < SellproductCustomername.length; p++) {
+        for (p = 0; p < SellproductCustomername.length; p++) {
             if (search.equals(SellproductCustomername[p])) {
                 indexs.add(p);
             }

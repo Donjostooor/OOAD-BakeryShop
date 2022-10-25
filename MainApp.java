@@ -212,7 +212,7 @@ public class MainApp {
                                         "CustomerName : " + aname + "   " + "CustomerTel : " + sp.getGenTel(aname));
                                 System.out.println("List" + " | " + "ProductId" + " | " + "ProductName" + " | "
                                         + "ProductPrice" + " | " + "Number" + " | ");
-                                List<Integer> G = Sellproduct.getFilterOrder(aname);
+                                List<Integer> G = Sellproduct.getFilterPerson(aname);
                                 int[] grr = new int[G.size()];
                                 // Converting Set object to integer array
                                 int g = 0;
@@ -266,7 +266,7 @@ public class MainApp {
                                         System.out.println(" List  ProductName                        Price    ");
                                         System.out.println(" ------------------------------------------------- ");
 
-                                        List<Integer> Q = Sellproduct.getFilterOrder(aname);
+                                        List<Integer> Q = Sellproduct.getFilterPerson(aname);
                                         int[] qrr = new int[Q.size()];
                                         // Converting Set object to integer array
                                         int q = 0;
@@ -386,7 +386,6 @@ public class MainApp {
                                             else
                                                 break;
                                         }
-                                        int a = i++;
                                         int y = 1 + j;
                                         sp.Aid[y] = i;
 
@@ -415,15 +414,22 @@ public class MainApp {
                                 System.out.println("DateTime : " + sp.getSellproductOrderdate());
                                 System.out.println("List" + " | " + "ProductId" + " | " + "ProductName" + " | "
                                         + "Number" + " | " + "ProductPrice" + " | " + "Pick-up_Date");
-                                for (int i = 1; i < sp.Aid.length; i++) {
-                                    if (sp.SellproductId[i] != 0 && sp.getFilterName(Cname) == true) {
-                                        System.out.println(i + ".   |     " + sp.SellproductId[i] + "     |   "
-                                                + sp.SellproductName[i] + "   |    " + sp.SellproductNum[i]
-                                                + "   |     " + sp.SellproductPrice[i] + "     |     "
-                                                + sp.SellproductOrderdate[i]);
-                                    } else {
-                                        break;
-                                    }
+
+                                List<Integer> D = Sellproduct.getFilterPerson(Cname);
+                                int[] drr = new int[D.size()];
+                                // Converting Set object to integer array
+                                int d = 0;
+                                for (int x : D) {
+                                    drr[d++] = x;
+                                }
+
+                                for (int i = 0; i < D.size(); i++) {
+                                    System.out.println(" " + (i + 1) + ".   |     " + sp.SellproductId[drr[i]]
+                                            + "     |   "
+                                            + sp.SellproductName[drr[i]] + "   |    " + sp.SellproductNum[drr[i]]
+                                            + "   |     " + sp.SellproductPrice[drr[i]] + "     |     "
+                                            + sp.SellproductOrderdate[drr[i]]);
+
                                 }
                                 // (0) Exit
                                 System.out.println("Total of Piece : " + sp.getSellproductTotal(Cname));
@@ -467,16 +473,21 @@ public class MainApp {
                                 System.out.println(" ------------------------------------------------- ");
                                 System.out.println(" List  ProductName           Price     PickUp Date ");
                                 System.out.println(" ------------------------------------------------- ");
-                                for (int i = 1; i < sp.Aid.length; i++) {
-                                    if (sp.SellproductId[i] != 0 && sp.getFilterName(OCName) == true) {
-                                        System.out.println(" " + i + "     " + sp.SellproductName[i]
-                                                + "                     " + sp.SellproductPrice[i] + "    "
-                                                + sp.SellproductOrderdate[i]);
-                                        System.out.println("          Num : " + sp.SellproductNum[i]);
-                                    } else {
-                                        break;
-                                    }
 
+                                List<Integer> O = Sellproduct.getFilterPerson(Cname);
+                                int[] orr = new int[O.size()];
+                                // Converting Set object to integer array
+                                int o = 0;
+                                for (int x : O) {
+                                    orr[o++] = x;
+                                }
+                                // System.out.println(G);
+                                // System.out.println(G.size());
+                                for (int i = 0; i < O.size(); i++) {
+                                    System.out.println(" " + (i + 1) + "     " + sp.SellproductName[orr[i]]
+                                            + "                     " + sp.SellproductPrice[orr[i]] + "    "
+                                            + sp.SellproductOrderdate[orr[i]]);
+                                    System.out.println("          Num : " + sp.SellproductNum[orr[i]]);
                                 }
                                 System.out.println(" ------------------------------------------------- ");
                                 System.out.println("Total of Piece : " + sp.getSellproductTotal(OCName));
