@@ -1,8 +1,10 @@
 public class Product {
-    int[] ProductId = { 1, 2 }; // NO Null
-    String[] ProductName = { "Cake", "Tea" };
-    int[] ProductPrice = { 120, 30 };
-    String[] ProductDeTail = { "Good ", "Hot" };
+    int[] ProductId = { 1, 2, 3, 4, 5, 6, 7, 8 }; // NO Null
+    String[] ProductName = { "Cookies", "Crispy bread", "Chiffon", "Spring rolls", "Brownies", "Banana cake", "Tea",
+            "Coffee" };
+    int[] ProductPrice = { 100, 50, 100, 100, 70, 100, 35, 35 };
+    String[] ProductDeTail = { "Crispy cookies", "Crispy bread", "Soft chiffon", "Soft spring rolls", "Soft brownies",
+            "Soft Banana Cake", "Iced Tea  Hot Tea", "Hot Coffee Iced Coffee" };
 
     public void setProduct(int[] ProductId, String[] ProductName, int[] ProductPrice, String[] ProductDeTail) {
         this.ProductId = ProductId;

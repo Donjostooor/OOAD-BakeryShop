@@ -1,7 +1,5 @@
 import java.util.*;
 
-import javax.xml.crypto.dsig.keyinfo.KeyName;
-
 public class MainApp {
 
     public static void main(String[] args) {
@@ -18,9 +16,7 @@ public class MainApp {
         Product products = new Product();
         /*--------------------------------------------------------------------------------------------------------------*/
         // Test Zone
-        // String aaname = sc.next().intern();
-        // sp.getFilterOrder(aaname);
-        // System.out.println(sp.getFilterOrder(aaname));
+
         /*--------------------------------------------------------------------------------------------------------------*/
         // UI Program
         int start;
